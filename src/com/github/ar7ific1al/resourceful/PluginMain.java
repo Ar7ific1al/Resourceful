@@ -13,6 +13,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.github.ar7ific1al.resourceful.utils.settings.SettingsHandler;
 import com.github.ar7ific1al.resourceful.utils.text.Log;
 
+import database.DatabaseManager;
+
 public class PluginMain extends JavaPlugin	{
 	
 	String startError = "&4Resourceful encountered a problem while starting. Please view the stack trace printed below.";
@@ -32,7 +34,9 @@ public class PluginMain extends JavaPlugin	{
 	public static File LoggingSettingsDir;
 	public static File LoggingSettingsFile;
 	
-	public static File PlayersDir;	
+	public static File PlayersDir;
+	
+	public static DatabaseManager DBMan;
 	
 	@Override
 	public void onEnable()	{
@@ -53,12 +57,16 @@ public class PluginMain extends JavaPlugin	{
 		console.log(Level.INFO, "[Resourceful] Beginning resource checks.", getServer().getConsoleSender());
 		SettingsHandler.SetPluginReference(this);
 		SettingsHandler.CheckResources();
+		
+		DBMan = new DatabaseManager(this);
+		DBMan.OpenDb();
 	}
 	
 	@Override
 	public void onDisable()	{
 		console.log(Level.INFO, "[Resourceful] Saving node states...", getServer().getConsoleSender());
 		SaveNodes("bwahh");
+		//DBMan.CloseDb();
 	}
 	
 	public void SaveNodes(String worldName)	{
