@@ -1,0 +1,19 @@
+####################################################################
+##                                                                ##
+##   Settings pertaining to gathering resources from Diamond Ore  ##
+##                                                                ##
+####################################################################
+
+##    All Times in Seconds    ##
+
+RespawnTime: 5
+Alerts:
+  AlertFinds: true
+    Message: "Your efforts in mining were rewarded with {R}!"
+  AlertDeplete: true
+    Message: "This Diamond Ore node is depleted! Come back later!"
+Drops:
+  DropsList: [DIAMOND_ORE, DIAMOND, COBBLESTONE, GRAVEL]
+  DropChances: [5, 2, 75, 18]
+  DropCounts: [1, 1, 5, 2]
+Experience: 25

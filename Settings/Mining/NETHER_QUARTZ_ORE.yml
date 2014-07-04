@@ -1,0 +1,20 @@
+####################################################################
+##                                                                ##
+##     Settings pertaining to gathering resources from Nether     ##
+##                          Quartz Ore                            ##
+##                                                                ##
+####################################################################
+
+##    All Times in Seconds    ##
+
+RespawnTime: 5
+Alerts:
+  AlertFinds: true
+    Message: "Your efforts in mining were rewarded with {R}!"
+  AlertDeplete: true
+    Message: "This Nether Quartz Ore node is depleted! Come back later!"
+Drops:
+  DropsList: [NETHER_QUARTZ, NETHERRACK, SOULSAND]
+  DropChances: [6, 50, 44]
+  DropCounts: [3, 5, 5]
+Experience: 2

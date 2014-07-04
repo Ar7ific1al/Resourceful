@@ -1,0 +1,15 @@
+author: Ar7ific1al
+description: Node resource gathering similar to Skyrim
+main: com.github.ar7ific1al.resourceful.PluginMain
+name: Resourceful
+url: 
+version: 0.1a
+depend: [SQLibrary]
+commands:
+    resourceful:
+        description: Base command for Resourceful
+        usage: /<command>
+permissions:
+    resourceful.placeholder:
+        description: Placeholder permissions
+        default: op

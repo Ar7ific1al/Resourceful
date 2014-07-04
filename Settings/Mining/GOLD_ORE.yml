@@ -1,0 +1,19 @@
+####################################################################
+##                                                                ##
+##    Settings pertaining to gathering resources from Gold Ore    ##
+##                                                                ##
+####################################################################
+
+##    All Times in Seconds    ##
+
+RespawnTime: 5
+Alerts:
+  AlertFinds: true
+    Message: "Your efforts in mining were rewarded with {R}!"
+  AlertDeplete: true
+    Message: "This Gold Ore node is depleted! Come back later!"
+Drops:
+  DropsList: [GOLD_ORE, GOLD_NUGGET, COBBLESTONE, GRAVEL]
+  DropChances: [5, 2, 75, 18]
+  DropCounts: [2, 1, 4, 3]
+Experience: 15

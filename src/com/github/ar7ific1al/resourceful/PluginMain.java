@@ -1,65 +1,69 @@
 package com.github.ar7ific1al.resourceful;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.github.ar7ific1al.resourceful.utils.Log;
-import com.github.ar7ific1al.resourceful.utils.SettingsHandler;
+import com.github.ar7ific1al.resourceful.utils.settings.SettingsHandler;
+import com.github.ar7ific1al.resourceful.utils.text.Log;
 
 public class PluginMain extends JavaPlugin	{
 	
-	SettingsHandler Settings;
 	String startError = "&4Resourceful encountered a problem while starting. Please view the stack trace printed below.";
+	String version;
+	List<String> authors;
+	public static final Logger console = Logger.getLogger("Resourceful");
 	
-	private static File SkillsDir;
-	private static File MiningSettingsFile;
-	private static FileConfiguration MiningSettings = new YamlConfiguration();
+	public static File SettingsDir;
+	public static File SettingsFile;
 	
+	public static File MiningSettingsDir;
+	public static File MiningSettingsFile;
 	
+	public static File CropsSettingsDir;
+	public static File CropsSettingsFile;
+	
+	public static File LoggingSettingsDir;
+	public static File LoggingSettingsFile;
+	
+	public static File PlayersDir;	
 	
 	@Override
 	public void onEnable()	{
-		Settings = new SettingsHandler(this);
-		try {
-			SettingsHandler.loadSettingsFile(getDataFolder() + "/Settings", "settings.yml");
-		} catch (IOException | InvalidConfigurationException e) {
-			Log.LogMessage(Log.ColorMessage("&4There was a problem loading &eResourceful/Settings/settings.yml&4, please ensure the file exists. Consult the stack trace below for more information."), Bukkit.getConsoleSender());
-			e.printStackTrace();
-		}
+		PluginManager pm = Bukkit.getServer().getPluginManager();
+		PluginDescriptionFile pdFile = this.getDescription();
+		version = pdFile.getVersion();
+		authors = pdFile.getAuthors();
+		console.log(Level.INFO, "[Resourceful] Resourceful v." + version + " brought to you by " + authors + "...", getServer().getConsoleSender());
 		
-		SkillsDir = new File(getDataFolder() + "/Settings/Skills");
-		if (!SkillsDir.exists())	{
-			SkillsDir.mkdir();
-		}
+		SettingsDir = new File(getDataFolder() + "/Settings");
+		SettingsFile = new File(SettingsDir + "/settings.yml");
 		
-		MiningSettingsFile = new File(getDataFolder() + "/Settings/Skills", "mining.yml");
-		if (!MiningSettingsFile.exists())	{
-			saveResource("Settings/Skills/mining.yml", true);
-		}
-		try {
-			MiningSettings.load(MiningSettingsFile);
-		} catch (IOException | InvalidConfigurationException e) {
-			Log.LogMessage(Log.ColorMessage("&4There was a problem loading &eResourceful/Settings/Skills/mining.yml&4, please ensure the file exists. Consult the stack trace below for more information."), Bukkit.getConsoleSender());
-			e.printStackTrace();
-		}
+		MiningSettingsDir = new File(SettingsDir + "/Mining");
+		CropsSettingsDir = new File(SettingsDir + "/Crops");
+		LoggingSettingsDir = new File(SettingsDir + "/Logging");
+		PlayersDir = new File(getDataFolder() + "/Players");
+		
+		console.log(Level.INFO, "[Resourceful] Beginning resource checks.", getServer().getConsoleSender());
+		SettingsHandler.SetPluginReference(this);
+		SettingsHandler.CheckResources();
 	}
 	
 	@Override
 	public void onDisable()	{
-		
+		console.log(Level.INFO, "[Resourceful] Saving node states...", getServer().getConsoleSender());
+		SaveNodes("bwahh");
 	}
 	
 	public void SaveNodes(String worldName)	{
 		
+		console.log(Level.INFO, "[Resourceful] Node states saved!", getServer().getConsoleSender());
 	}
 	
 }

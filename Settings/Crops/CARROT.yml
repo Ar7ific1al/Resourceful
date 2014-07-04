@@ -1,0 +1,17 @@
+####################################################
+##    Settings for gathering resources from Carrots
+####################################################
+
+##    All Times in Seconds    ##
+
+RespawnTime: 5
+Alerts:
+  AlertFinds: true
+    Message: "Your efforts in mining were rewarded with {R}!"
+  AlertDeplete: true
+    Message: "This Carrot crop node is depleted! Come back later!"
+Drops:
+  DropsList: [CARROT, CARROT_SEEDS, DIRT]
+  DropChances: [5, 5, 90]
+  DropCounts: [1, 1, 2]
+Experience: 5

@@ -1,0 +1,17 @@
+####################################################
+##    Settings for gathering resources from Potatoes
+####################################################
+
+##    All Times in Seconds    ##
+
+RespawnTime: 5
+Alerts:
+  AlertFinds: true
+    Message: "Your efforts in mining were rewarded with {R}!"
+  AlertDeplete: true
+    Message: "This Potato crop node is depleted! Come back later!"
+Drops:
+  DropsList: [POTATO, POISON_POTATO, DIRT]
+  DropChances: [15, 1, 84]
+  DropCounts: [1, 1, 2]
+Experience: 5
